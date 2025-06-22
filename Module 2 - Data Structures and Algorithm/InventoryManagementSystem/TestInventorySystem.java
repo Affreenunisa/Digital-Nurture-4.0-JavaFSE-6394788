@@ -1,4 +1,6 @@
-class TestInventorySystem {
+package InventoryManagementSystem;
+
+public class TestInventorySystem {
     public static void main(String[] args) {
         InventoryManager manager = new InventoryManager();
 

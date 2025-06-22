@@ -1,26 +1,31 @@
- class Product {
-    private String productId;
-    private String productName;
-    private int quantity;
-    private double price;
+package InventoryManagementSystem;
 
-    public Product(String productId, String productName, int quantity, double price) {
-        this.productId = productId;
-        this.productName = productName;
-        this.quantity = quantity;
-        this.price = price;
+import java.util.HashMap;
+
+public class InventoryManager {
+    private HashMap<String, Product> inventory = new HashMap<>();
+
+    public void addProduct(Product product) {
+        inventory.put(product.getProductId(), product);
     }
 
-    // Getters & Setters
-    public String getProductId() { return productId; }
-    public String getProductName() { return productName; }
-    public int getQuantity() { return quantity; }
-    public double getPrice() { return price; }
+    public void updateProduct(String productId, int quantity, double price) {
+        Product product = inventory.get(productId);
+        if (product != null) {
+            product.setQuantity(quantity);
+            product.setPrice(price);
+        } else {
+            System.out.println("Product not found.");
+        }
+    }
 
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-    public void setPrice(double price) { this.price = price; }
+    public void deleteProduct(String productId) {
+        inventory.remove(productId);
+    }
 
-    public String toString() {
-        return productId + " | " + productName + " | Qty: " + quantity + " | ₹" + price;
+    public void viewAllProducts() {
+        for (Product p : inventory.values()) {
+            System.out.println(p);
+        }
     }
 }
